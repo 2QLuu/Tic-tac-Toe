@@ -121,6 +121,7 @@ function checkWin() {
 
 function endGame(draw) {
 
+
   if (draw === true) {
     overlayText.innerText = "Draw!";
   } else if (activeClass === playerConst) {
@@ -179,3 +180,7 @@ function updateScore(winner) {
   document.getElementById("player-score").innerHTML = playerScore;
   document.getElementById("computer-score").innerHTML = computerScore;
 }
+
+
+
+
