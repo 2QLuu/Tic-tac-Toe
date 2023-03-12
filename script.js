@@ -71,12 +71,12 @@ function startGame() {
 
 function endMove() {
   if (checkWin() === true) {
-    spielBeenden(false);
+    endGame(false);
     return;
   }
 
   if (checkDraw() === true) {
-    spielBeenden(true);
+    endGame(true);
     return;
   }
 
@@ -119,16 +119,18 @@ function checkWin() {
   return false;
 }
 
-function spielBeenden(unentschieden) {
+function endGame(draw) {
 
-  if (unentschieden === true) {
+  if (draw === true) {
     overlayText.innerText = "Draw!";
   } else if (activeClass === playerConst) {
     overlayText.innerText = "You WON!";
     overlayText.classList.add(playerConst);
+    updateScore(playerConst);
   } else {
     overlayText.innerText = "The Enemy Won!";
     overlayText.classList.add(computerConst);
+    updateScore(computerConst);
   }
 
   overlay.classList.add(visibileConst);
@@ -158,4 +160,22 @@ function computerMakesMove() {
   } else {
        computerMakesMove();
   }
+}
+
+
+
+// scoreboard // 
+
+let playerScore = 0;
+let computerScore = 0;
+
+function updateScore(winner) {
+  if (winner === playerConst) {
+    playerScore++;
+  } else if (winner === computerConst) {
+    computerScore++;
+  }
+
+  document.getElementById("player-score").innerHTML = playerScore;
+  document.getElementById("computer-score").innerHTML = computerScore;
 }
